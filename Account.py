@@ -1,26 +1,26 @@
 
 
 class Account:
-    def __init__(self, account_id, account_number, account_type, account_name, account_opening_date, account_holder_name, rate_of_interest):
-        self.account_id = account_id
+    def __init__(self, account_number, account_type,  account_holder_name, current_balance, rate_of_interest):
         self.account_number = account_number
         self.account_type = account_type
-        self.account_name = account_name
-        self.account_opening_date = account_opening_date
         self.account_holder_name = account_holder_name
-        self.current_balance = 0
+        self.current_balance = current_balance
         self.rate_of_interest = rate_of_interest
 
+
+    def print_Account(self): 
+        print(f'account_number {self.account_number}')
+        print(f'account_type {self.account_type}') 
+        print(f'account_holder_name {self.account_holder_name}') 
+        print(f'current_balance {self.current_balance}') 
+        print(f'rate_of_interest {self.rate_of_interest}')
+
+    def deposit(self, amount_to_deposit):
+
+        self.current_balance += amount_to_deposit
+        print(f'Current balance {self.current_balance} after deposit of {amount_to_deposit}')
     
-
-
-
-        
-     
-# open_account , close_account, get_account, set_account & all get/set for attributes
-
-    def get_account(self):
-        return self
 
     def get_account_type(self):
         return self.account_type
@@ -50,26 +50,15 @@ class Account:
     def deposit_amount(self, deposit_amount):
         self.current_balance += deposit_amount
         print("amount deposited")
-        print(withdraw_amount)
+        print(deposit_amount)
         print("current balance")
         print(self.current_balance)
 
-    def withdraw_amount(self, withdraw_amount):
-        self.current_balance -= withdraw_amount
-        print("amount withdrawn")
-        print(withdraw_amount)
-        print("current balance")
-        print(self.current_balance)
+        def get_account_holder_name(self):
+            return self.account_holder_name
 
-'''
-
-
-        def get_account_id(self):
-            return self.account_id
-
-
-        def set_account_id(self, account_id):
-            self.account_id = account_id
+        def set_account_holder_name(self, account_holder_name):
+            self.account_holder_name = account_holder_name
 
 
         def get_account_number(self):
@@ -86,4 +75,17 @@ class Account:
 
         def set_account_type(self, account_type):
             self.account_type = account_type
-'''
+
+        def get_rate_of_interest(self):
+            return self.rate_of_interest
+     
+
+        def set_rate_of_interest(self, rate_of_interest):
+            self.rate_of_interest = rate_of_interest
+
+        def get_current_balance(self):
+            return self.current_balance
+     
+
+        def set_current_balance(self, current_balance):
+            self.current_balance = current_balance

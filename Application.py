@@ -2,6 +2,8 @@ from Account import Account
 from Customer import Customer
 from Transaction import Transaction
 from Bank import Bank
+from SavingsAccount import SavingsAccount
+from ChequingAccount import ChequingAccount
 
 class Application:
     def __init__(self):
@@ -11,60 +13,81 @@ class Application:
         self.Bank = None
 
 
-    def get_user_input(self):
-        Customer_id = 0
-        Customer_list = []
-        while (1):
+    def showMainMenu(self):
+        account_list = []
+        run_Menu = 1
+        
+        while (run_Menu == 1):
             print("Please select your choices: ")
-            print("1: Add new customer")
-            print("2: Update customer")
+            print("1: Select Account")
+            print("2: Open Account")
+            print("3: Exit")
             choice = int(input("Select your choice: "))
-            '''while (1):
-                print("Please select your choices: ")
-                print("1: Add new customer")
-                print("2: Update customer")
-                print("3: Transaction")
-                print("4: Create account")
-                choice = int(input("Select your choice: "))
-                if choice == 1:
-                    Customer_name = input("Enter customer name")
-                    Customer_date_of_birth = input("Enter customer date of birth")
-                    Customer_address = input("Enter customer address")
-                    Customer_phone_number = input("Enter customer phone number")
-                    Customer_email = input("Enter customer email")
-                    self.Customer = Customer(Customer_id + 1, Customer_name, Customer_date_of_birth, Customer_address, Customer_phone_number,Customer_email)
-                    #Customer.get_Customer(self.Customer)
-                    Customer_list.append(self.Customer)
-
-                if choice == 2:
-                    i = 0
-                    print("Please select customers from the following list:")
-                    while i < len(Customer_list):
-                        print(Customer_list[i].Customer_name)
-                        i = i + 1
-                    Customer_name = input("Enter customer name")
-                    i = 0
-                    index = 0
-                    while i < len(Customer_list):
-                        if Customer_list[i].Customer_name == Customer_name:
-                            index = i    
-                        i = i + 1
-                    Customer_list[index].print_Customer()   
+            if choice == 1:
+                index = -1
+                index = self.Bank.search_account(account_list)
+                if index > -1:
+                    account_list[index].print_Account()
+                    self.showAccountMenu(account_list[index])
+                else:
+                    print(f'Requested account number : {account_number} not found')
                 
-                if choice == 3:
-                    customer_account_id = input("Enter customer account ID")
-                    transaction_type = input("Enter transaction type")
-                    account_id = input("Enter account ID")
-                    amount = input("Enter amount")
-                    transaction_date = input("Enter transaction date")     
+           
+            if choice == 2:
+                account_type = input("Enter account type(Savings/Chequing):  ")
+                self.Bank = Bank("abc bank") 
+                account_number = input("Enter account number:  ")
+                current_balance = 0
+                account_holder_name = input("Enter account holder name:  ")
+                rate_of_interest = input("Enter rate of interest:  ")
+                self.Account=self.Bank.open_account(account_number, account_type,  account_holder_name, current_balance, rate_of_interest)                
+                account_list.append(self.Account)
+                print(f'Account number: {self.Account.account_number}')
+                print(f'Account type: {self.Account.account_type}')
 
-                if choice == 4:
-                    self.Bank = Bank("abc bank") 
-                    self.Bank.open_account()
-                '''
+
+            if choice == 3:
+                run_Menu = 0
+
+    def showAccountMenu(self, Account):
+        Account.print_Account()
+        run_Menu = 1
+        while (run_Menu == 1):
+            print("Account Menu")
+            print("1: Check Balance") 
+            print("2: Deposit")    
+            print("3: Withdraw")       
+            print("4: Exit") 
+            choice = int(input("Enter your choice: ")) 
+            if choice == 1:
+                print(f' current balance: {Account.current_balance}')
+
+            if choice == 2:
+                deposit_amount =  int(input(f'Enter amount to deposit'))
+                Account.deposit(deposit_amount)
+
+            if choice == 3:
+                withdraw_amount =  int(input(f'Enter amount to withdraw'))
+                Account.withdraw(withdraw_amount)
+           
+            if choice == 4:
+                run_Menu = 0
+
+
+
     def run(self):
-        self.showMainMenu()
-        self.showAccountMenu()
+        run_program = 1
+        while (run_program == 1):
+            print("1: show Main Menu")
+
+            print("2: Exit")
+            choice = int(input("Select your choice: "))
+            if choice == 1:
+                self.showMainMenu()
+            if choice == 2:
+                run_program = 0
+
+
 
 if __name__ == "__main__":
     app = Application()

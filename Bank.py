@@ -1,4 +1,6 @@
 from Account import Account
+from SavingsAccount import SavingsAccount
+from ChequingAccount import ChequingAccount
 
 
 class Bank:
@@ -8,21 +10,40 @@ class Bank:
 
 
 
-    def open_account(self):
-        account_id = input("Enter account ID")
-        account_number = input("Enter account number")
-        account_type = input("Enter account type")
-        account_name = input("Enter account name")
-        account_opening_date = input("Enter account opening date")
-        account_holder_name = input("Enter account holder name")
-        rate_of_interest = input("Enter rate of interest")  
-        self.Account = Account(account_id, account_number, account_type, account_name, account_opening_date, account_holder_name, rate_of_interest)
-        print(self.Account.get_account_type())
+    def open_account(self, account_number, account_type,  account_holder_name, current_balance, rate_of_interest):
+        if account_type == "Savings":
+            self.Account = SavingsAccount(account_number, account_type,  account_holder_name, current_balance, rate_of_interest)
+            print(f'Account Type {self.Account.get_account_type()}')
+
+
+        if account_type == "Chequing":
+            self.Account = ChequingAccount(account_number, account_type,  account_holder_name, current_balance, rate_of_interest)
+            print(self.Account.get_account_type())
+            
+        return self.Account
         #print(Account.acount_holder_name)
 
 
-    def search_account(self):
-         account_id = input("Enter account ID")
+    def search_account(self,account_list):
+        i = 0
+        print("Please select account from the following list:")
+        while i < len(account_list):
+            print(f'Account number: {account_list[i].account_number}     Account type: {account_list[i].account_type}')
+            i = i + 1
+        account_number = input("Enter account number")
+        i = 0
+        index = -1
+        while i < len(account_list):
+            if account_list[i].account_number == account_number:
+                index = i    
+            i = i + 1
+        if index > -1:
+            account_list[index].print_Account()
+            return index
+        else:
+            print(f'Requested account number : {account_number} not found')
+            return -1
+
         
 
 
