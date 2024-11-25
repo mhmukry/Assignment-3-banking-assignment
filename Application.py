@@ -14,6 +14,7 @@ class Application:
         run_Menu = 1
         
         while (run_Menu == 1):
+            self.clear_console()
             print("Please select your choices: ")
             print("1: Select Account")
             print("2: Open Account")
@@ -30,6 +31,7 @@ class Application:
                 
            
             if choice == 2:
+                self.clear_console()
                 account_type = input("Enter account type(Savings/Chequing):  ")
                 self.Bank = Bank("Mukry's bank") 
                 account_number = input("Enter account number:  ")
@@ -56,14 +58,17 @@ class Application:
             print("4: Exit") 
             choice = int(input("Enter your choice: ")) 
             if choice == 1:
+                self.clear_console()
                 print(f' current balance: {Account.current_balance}')
 
             if choice == 2:
-                deposit_amount =  int(input(f'Enter amount to deposit'))
+                self.clear_console()
+                deposit_amount =  int(input(f'Enter amount to deposit: '))
                 Account.deposit(deposit_amount)
 
             if choice == 3:
-                withdraw_amount =  int(input(f'Enter amount to withdraw'))
+                self.clear_console()
+                withdraw_amount =  int(input(f'Enter amount to withdraw: '))
                 Account.withdraw(withdraw_amount)
            
             if choice == 4:
@@ -77,12 +82,14 @@ class Application:
             else:
                 print("Incorrect value")
 
+    def clear_console(self):
+        print("\033[H\033[2J", end="")
 
     def run(self):
         run_program = 1
         while (run_program == 1):
+            self.clear_console()
             print("1: show Main Menu")
-
             print("2: Exit")
             choice = int(input("Select your choice: "))
             if choice == 1:

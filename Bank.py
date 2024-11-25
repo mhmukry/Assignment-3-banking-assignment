@@ -26,11 +26,11 @@ class Bank:
 
     def search_account(self,account_list):
         i = 0
-        print("Please select account from the following list:")
+        print("Please select account from the following list: ")
         while i < len(account_list):
             print(f'Account number: {account_list[i].account_number}     Account type: {account_list[i].account_type}')
             i = i + 1
-        account_number = input("Enter account number")
+        account_number = input("Enter account number: ")
         i = 0
         index = -1
         while i < len(account_list):

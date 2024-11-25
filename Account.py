@@ -28,64 +28,31 @@ class Account:
     def set_account_type(self, account_type):
         self.account_type = account_type
 
+    def get_account_holder_name(self):
+        return self.account_holder_name
 
-    def get_open_account(self):
-        return self.open_account
-
-
-    def set_open_account(self, open_account):
-        self.open_account = open_account
+    def set_account_holder_name(self, account_holder_name):
+        self.account_holder_name = account_holder_name
 
 
+    def get_account_number(self):
+        return self.account_number
 
 
-    def get_close_account(self):
-        return self.close_account 
+    def set_account_number(self, account_number):
+        self.account_number = account_number
 
 
-    def set_close_account(self, close_account):
-        self.close_account = close_account
+    def get_rate_of_interest(self):
+        return self.rate_of_interest
+    
 
+    def set_rate_of_interest(self, rate_of_interest):
+        self.rate_of_interest = rate_of_interest
 
-    def deposit_amount(self, deposit_amount):
-        self.current_balance += deposit_amount
-        print("amount deposited")
-        print(deposit_amount)
-        print("current balance")
-        print(self.current_balance)
+    def get_current_balance(self):
+        return self.current_balance
+    
 
-        def get_account_holder_name(self):
-            return self.account_holder_name
-
-        def set_account_holder_name(self, account_holder_name):
-            self.account_holder_name = account_holder_name
-
-
-        def get_account_number(self):
-            return self.account_number
-
-
-        def set_account_number(self, account_number):
-            self.account_number = account_number
-
-
-        def get_account_type(self):
-            return self.account_type
-
-
-        def set_account_type(self, account_type):
-            self.account_type = account_type
-
-        def get_rate_of_interest(self):
-            return self.rate_of_interest
-     
-
-        def set_rate_of_interest(self, rate_of_interest):
-            self.rate_of_interest = rate_of_interest
-
-        def get_current_balance(self):
-            return self.current_balance
-     
-
-        def set_current_balance(self, current_balance):
-            self.current_balance = current_balance
+    def set_current_balance(self, current_balance):
+        self.current_balance = current_balance
