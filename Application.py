@@ -1,6 +1,4 @@
 from Account import Account
-from Customer import Customer
-from Transaction import Transaction
 from Bank import Bank
 from SavingsAccount import SavingsAccount
 from ChequingAccount import ChequingAccount
@@ -8,8 +6,6 @@ from ChequingAccount import ChequingAccount
 class Application:
     def __init__(self):
         self.Account = None
-        self.Transaction = None
-        self.Customer = None
         self.Bank = None
 
 
@@ -35,11 +31,11 @@ class Application:
            
             if choice == 2:
                 account_type = input("Enter account type(Savings/Chequing):  ")
-                self.Bank = Bank("abc bank") 
+                self.Bank = Bank("Mukry's bank") 
                 account_number = input("Enter account number:  ")
                 current_balance = 0
                 account_holder_name = input("Enter account holder name:  ")
-                rate_of_interest = input("Enter rate of interest:  ")
+                rate_of_interest = self.get_user_input_float( "Enter Rate of Interest (0-100):  ",  0.0,  100.00)
                 self.Account=self.Bank.open_account(account_number, account_type,  account_holder_name, current_balance, rate_of_interest)                
                 account_list.append(self.Account)
                 print(f'Account number: {self.Account.account_number}')
@@ -73,6 +69,13 @@ class Application:
             if choice == 4:
                 run_Menu = 0
 
+    def get_user_input_float(self,  input_str,  min_value,  max_value):
+        while (1):
+            input_integer = float(input(input_str))
+            if ((input_integer >= min_value) and (input_integer <= max_value)):
+                return input_integer
+            else:
+                print("Incorrect value")
 
 
     def run(self):
